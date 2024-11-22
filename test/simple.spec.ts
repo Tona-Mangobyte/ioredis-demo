@@ -19,4 +19,12 @@ describe('Simple test', () => {
     const result = await redisConnection.get(key);
     expect(value).toBe(result);
   });
+
+  it('set with expire & get', async () => {
+    const key = 'foo2';
+    const value = 'bar';
+    redisConnection.set(key, value, 'EX', 60);
+    const result = await redisConnection.get(key);
+    expect(value).toBe(result);
+  });
 });
